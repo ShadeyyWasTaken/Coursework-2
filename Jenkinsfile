@@ -28,14 +28,10 @@ node {
 
     stage('Deploy Build') {
 
-        app.inside {
-
             sshagent(credentials: ['my-ssh-key']) {
                 
                 sh 'kubectl set image deployments/coursework coursework=shadeyy/coursework'
 
             }
-        }
-
     }
 }
