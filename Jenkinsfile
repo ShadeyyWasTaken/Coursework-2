@@ -25,4 +25,17 @@ node {
 
         }
     }
+
+    stage('Deploy Build') {
+
+        app.inside {
+
+            sshagent(credentials: ['my-credential-id']) {
+                
+                sh 'kubectl set image deployments/coursework coursework=shadeyy/coursework'
+
+            }
+        }
+
+    }
 }
