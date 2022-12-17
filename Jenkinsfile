@@ -30,7 +30,7 @@ node {
 
         app.inside {
 
-            sshagent(credentials: ['my-credential-id']) {
+            sshagent(credentials: ['my-ssh-key']) {
                 
                 sh 'kubectl set image deployments/coursework coursework=shadeyy/coursework'
 
