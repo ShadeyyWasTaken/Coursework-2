@@ -1,0 +1,16 @@
+- name: Deploying Image and Creating Service
+  hosts: localhost
+  user: ubuntu
+
+  tasks:
+    - name: 1. Deploy Image From Dockerhub to Kubernetes
+      shell:
+        cmd: kubectl create deployment coursework --image=shadeyy/coursework
+
+    - name: 2. Create Service
+      shell:
+        cmd: kubectl expose deployment/coursework --type="NodePort" --port 8080 --name node-port-service
+
+    - name: 3. Scale Deployment
+      shell:
+        cmd: kubectl scale deployments/coursework --replicas=5

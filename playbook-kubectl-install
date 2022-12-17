@@ -1,0 +1,31 @@
+- name: Install Kubectl
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  tasks:
+  - name: 1. Update APT Package Manager
+    apt: 
+      update_cache: yes
+
+  - name: 2. Install Dependency Package
+    apt:
+      update_cache: yes
+      name: apt-transport-https
+
+  - name: 3. Get APT Key
+    shell:
+      cmd: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+  - name: 4. Install Repository
+    shell:
+      cmd: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+
+  - name: 5. Update Package Manager
+    apt:
+      update_cache: yes
+
+  - name: 6. Install Kubectl
+    apt:
+      update_cache: yes
+      name: kubectl
