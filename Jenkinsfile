@@ -30,7 +30,7 @@ node {
 
             sshagent(credentials: ['my-ssh-key']) {
                 
-                sh 'ubuntu@52.91.167.57 kubectl set image deployments/coursework coursework=shadeyy/coursework'
+                sh 'ssh ubuntu@52.91.167.57 kubectl set image deployments/coursework coursework=shadeyy/coursework'
 
             }
     }
