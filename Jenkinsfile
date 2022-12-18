@@ -26,6 +26,7 @@ node {
 
         docker.withRegistry('https://registry.hub.docker.com', 'coursework') {
 
+	    app.push("${env.BUILD_NUMBER}")
             app.push("latest")
 
         }
@@ -35,7 +36,7 @@ node {
 
         sshagent(credentials: ['my-ssh-key']) {
                 
-            sh 'ssh ubuntu@52.91.167.57 kubectl set image deployments/coursework coursework=shadeyy/coursework:latest'
+            sh 'ssh ubuntu@52.91.167.57 kubectl set image deployments/coursework coursework=shadeyy/coursework:${env.BUILD_NUMBER}'
 
         }
     }
